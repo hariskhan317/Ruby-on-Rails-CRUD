@@ -1,0 +1,52 @@
+<% if notice %>
+  <%= render '/layouts/alerts' %>
+<% end %>
+
+<% if user_signed_in? %>
+
+  <div class="flex justify-between">
+    <h1 class="text-3xl font-medium py-10">Friends</h1>
+    <%= link_to "Add New friend", new_friend_path, class:'mt-10 border h-10 px-3 py-1.5 rounded bg-gray-800 text-white' %>
+  </div>
+  <div id="friends">
+    <table class="table-fixed w-full mt-6">
+      <thead class="">
+        <tr class="bg-gray-200 text-left">
+          <th class="px-2 py-2">Name</th> 
+          <th class="px-2 py-2">Email</th>
+          <th class="px-2 py-2">Phone name</th>
+          <th class="px-2 py-2">Twitter</th>
+          <th class="px-2 py-2">User</th> 
+        </tr>
+      </thead>
+      <tbody>
+        <% @friends.each do |friend| %>
+            <tr> 
+              <td class="px-2 py-2">
+                <%= link_to friend.first_name + ' ' + friend.last_name , friend, class:'text-blue-500 underline capitalize' %>
+             
+              </td>
+              <td class="px-2 py-2">
+                <%= friend.email%>
+              </td>
+              <td class="px-2 py-2">
+                <%= friend.phone %>
+              </td>
+              <td class="px-2 py-2">
+                <%= friend.twitter %>
+              </td>
+              <td class="px-2 py-2">
+                <%= friend.user.id %> 
+            </tr> 
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+
+<% else %>
+  <div>
+    <h1 class="text-3xl font-medium py-10">Sign up/ Login  to add friends</h1>
+  </div>
+<% end %>
+
+
